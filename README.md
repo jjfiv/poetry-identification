@@ -3,7 +3,7 @@ Poetry Identification Code from my dissertation runs on zip files containing DJV
 
 ## Where did this model come from?
 
-For details about where this model came from, or what it does, refer to my dissertation for now.
+For details about where this model came from, or what it does, refer to [my dissertation](https://scholarworks.umass.edu/dissertations_2/1573/) for now.
 
 ```bibtex
 @phdthesis{foley2019thesis,
