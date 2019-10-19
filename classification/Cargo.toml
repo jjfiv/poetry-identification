@@ -1,0 +1,19 @@
+[package]
+name = "classification"
+version = "0.1.0"
+authors = ["John Foley <jfoley@cs.umass.edu>"]
+
+[dependencies]
+unicode-segmentation = "*"
+unicode-normalization = "*"
+streaming-stats = "*"
+num-traits = "*"
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+zip = "0.5.2"
+clap = "*"
+
+[dependencies.djvuxml]
+version = "*"
+path = "../djvuxml-rs"
