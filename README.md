@@ -18,6 +18,23 @@ For details about where this model came from, or what it does, refer to [my diss
 
 Data from my dissertation is available at [CIIR/downloads/poetry](http://ciir.cs.umass.edu/downloads/poetry). The training data used to build the model is there, as well as the output of this model on the 50,000 books from the INEX 2007 challenge (basically a random sample of Internet Archive books).
 
+## How do I run the code?
+
+You'll need a bunch of DJVU-XML books available in a zip file. I have so many of these -- email me and we can work something out :)
+
+### Prepare
+1. Get [Rust](https://rustup.rs/).
+2. ``gunzip ../models/forest-05-2019.json.gz`` # Extract the model; it's too big for github otherwise -- only need to do this once.
+
+Build and run the code:
+```bash
+cd classification
+cargo build --release
+./target/release/classification --model ../models/forest-05-2019.json --books input_books.zip > input_books.poetry.jsonl
+```
+
+The ``classification`` binary once built is very portable because Rust does static linking -- you can build it once and copy it to a cluster of Linux machines fairly easily.
+
 ## About this Code
 
 This code is written in Rust. There are two packages: ``djvuxml-rs`` which is a pretty generic way to interact with internet-archive scanned book files, and ``classification`` which runs through using a JSONified Random Forest model and makes predictions at the page level. The files on [CIIR/downloads/poetry](http://ciir.cs.umass.edu/downloads/poetry) -- Poetry50K collection were generated from de-duplicating the output of this code.
