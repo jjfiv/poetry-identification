@@ -1,0 +1,20 @@
+[package]
+name = "djvuxml"
+version = "0.1.0"
+authors = ["John Foley <jfoley@cs.umass.edu>"]
+
+[dependencies]
+zip = "*"
+quick-xml = "0.11"
+regex = "0.2"
+lazy_static = "1.0"
+
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+
+failure = "0.1"
+failure_derive = "0.1"
+itertools = "0.7"
+
+clap = "*"
