@@ -1,14 +1,13 @@
 import sklearn
 import numpy as np
-import ujson as json
+import json
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.model_selection import KFold
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.metrics import roc_auc_score, precision_score, recall_score
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import SGDClassifier
+# This may not be very stable across sklearn versions...
+from sklearn.tree import _tree
 from collections import defaultdict
-from sklearn.externals import joblib
 
 def label_to_y(label):
     if label == 'POETRY':
@@ -65,8 +64,6 @@ for train_b, test_b in folds.split(books):
     test_i = flat_arr([by_book[b] for b in test_books])
 
     model = ExtraTreesClassifier( n_estimators=30, random_state=13, class_weight='balanced')
-    #model = MLPClassifier(hidden_layer_sizes=(16,), shuffle=True, random_state=13)
-    #model = SGDClassifier(shuffle=True, random_state=13, class_weight='balanced', loss='log')
     model.fit(xs[train_i], ys[train_i])
     models.append(model)
     yp = model.predict_proba(xs[test_i])[:, 1]
@@ -83,10 +80,6 @@ for train_b, test_b in folds.split(books):
             break
 
 
-keep = {'vocab': fnums, 'models': models}
-joblib.dump(keep, 'handcrafted.joblib')
-
-from sklearn.tree import _tree
 def dump_tree(tree_model):
     tree = tree_model.tree_
     def recurse(node):
